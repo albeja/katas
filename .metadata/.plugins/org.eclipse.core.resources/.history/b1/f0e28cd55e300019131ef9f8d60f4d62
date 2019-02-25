@@ -1,0 +1,54 @@
+package tictactoe;
+
+public class Spielbrett {
+	//TODO: Feld als eigene Klasse --> von 1 bis 9 durchnummerieren
+	private int[] positionen;
+	
+	public Spielbrett() {
+		positionen = new int[9];
+	}
+	
+	public int[][] ausgabe(){
+		int[][] spielbrett = new int[3][3];
+		
+		spielbrett[0][0] = positionen[0];
+		spielbrett[0][1] = positionen[1];
+		spielbrett[0][2] = positionen[2];
+		spielbrett[1][0] = positionen[3];
+		spielbrett[1][1] = positionen[4];
+		spielbrett[1][2] = positionen[5];
+		spielbrett[2][0] = positionen[6];
+		spielbrett[2][1] = positionen[7];
+		spielbrett[2][2] = positionen[8];
+		
+		return spielbrett;
+	}
+	
+	public boolean zug(int position, int spieler) {
+		if (positionIstUngültig(position)) return false;
+		if (spielerIstUngültig(spieler)) return false;
+		
+		if (feldIstFrei(position)) {
+			feldBelegen(position, spieler);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private boolean spielerIstUngültig(int spieler) {
+		return !(spieler == 1 || spieler == 2);
+	}
+
+	private boolean positionIstUngültig(int position) {
+		return position < 0 || position > 8;
+	}
+
+	private boolean feldIstFrei(int position) {
+		return positionen[position] == 0;
+	}
+	
+	private void feldBelegen(int position, int spieler) {
+		positionen[position] = spieler;
+	}
+}

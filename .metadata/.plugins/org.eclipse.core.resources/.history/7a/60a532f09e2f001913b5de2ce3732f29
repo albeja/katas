@@ -1,0 +1,7 @@
+package tictactoe;
+
+public class Spielbrett {
+	public int[][] ausgabe(){
+		return new int[2][3];
+	}
+}

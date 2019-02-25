@@ -1,0 +1,26 @@
+package tictactoe;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class SpielbrettTest {
+	public Spielbrett spielbrett;
+	
+	@Before
+	public void setUp() throws Exception {
+		spielbrett = new Spielbrett();
+	}
+
+	@Test
+	public void initialization() {
+		int[][] expected = new int[][]{{0, 0, 0},{0, 0, 0}};
+				
+		int[][] actual = spielbrett.ausgabe();
+		
+		assertArrayEquals(expected[0], actual[0]);
+		assertArrayEquals(expected[1], actual[1]);
+	}
+
+}

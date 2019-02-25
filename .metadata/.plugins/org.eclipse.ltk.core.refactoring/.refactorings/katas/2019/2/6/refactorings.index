@@ -1,0 +1,6 @@
+1549439394329	Rename package 'arabicToRoman'
+1549439410118	Rename type 'arabicToRoman'
+1549439423594	Rename type 'romanToArabic'
+1549439432329	Rename type 'romanToArabicTests'
+1549532815157	Extract method 'stumpfAnfuegen'
+1549533110670	Extract method 'baumAufbauen'

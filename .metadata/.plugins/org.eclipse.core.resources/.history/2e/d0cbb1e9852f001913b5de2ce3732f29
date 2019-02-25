@@ -1,0 +1,20 @@
+package galgen;
+
+public class Galgenmännchen {
+	private char[] gesuchtesArray;
+	private char[] geratenerZustand;
+	
+	public Galgenmännchen(String gesuchtesWort) {
+		gesuchtesArray = gesuchtesWort.toCharArray();
+		geratenerZustand = new char[gesuchtesArray.length];
+		
+		for(int counter=0;counter<geratenerZustand.length;counter++) {
+			geratenerZustand[counter] = '-';
+		}
+		
+		System.out.println('Finito');
+	}
+	 
+	public String rateBuchstabe(char buchstabe) {return ""; }
+	 
+}

@@ -1,0 +1,92 @@
+package tictactoe;
+
+import java.util.Scanner;
+
+public class SpieleEngine {
+	private Spielbrett brett = new Spielbrett();
+	private Scanner scanner = new Scanner(System.in);
+	private int spieler = 1;
+	
+	public void spielbrettVisualisieren() {
+		konsolenAusgabe(brett.ausgabe());
+		inputVerarbeiten(spieler);
+	}
+
+	private void inputVerarbeiten(int spieler) {
+		String kommando = scanner.next();
+		try {
+			eingabeVerarbeiten(kommando, spieler);
+		} catch(Exception e){
+			System.out.println(e.getMessage());
+			konsolenAusgabe(brett.ausgabe());
+		}
+	}
+	
+	private void konsolenAusgabe(int[][] spielstand) {
+		überschriftAusgeben();
+		
+		for(int zeile=0; zeile < spielstand.length; zeile++) {
+			zeilenNummerierungAusgeben(zeile);
+			zeileAusgeben(spielstand[zeile]);
+		};
+		
+		System.out.print("Kommando: ");
+
+	}
+
+	private void eingabeVerarbeiten(String kommando, int spieler) throws Exception {
+		switch (kommando) {
+			case "A0": brett.zug(0, spieler); spielerWechsel(); break;
+	        case "A1": brett.zug(1, spieler); spielerWechsel(); break;
+	        case "A2": brett.zug(2, spieler); spielerWechsel(); break;
+	        case "B0": brett.zug(3, spieler); spielerWechsel(); break;
+	        case "B1": brett.zug(4, spieler); spielerWechsel(); break;
+	        case "B2": brett.zug(5, spieler); spielerWechsel(); break;
+	        case "C0": brett.zug(6, spieler); spielerWechsel(); break;
+	        case "C1": brett.zug(7, spieler); spielerWechsel(); break;
+	        case "C2": brett.zug(8, spieler); spielerWechsel(); break;
+	        case "neu": brett = new Spielbrett(); this.konsolenAusgabe(brett.ausgabe()); break;
+	        case "ende": break;
+	        default:
+	        	throw new Exception();
+		}	
+	}
+
+	private void spielerWechsel() {
+		if (spieler == 1) spieler ++;
+		else spieler--;
+	}
+
+	private void zeilenNummerierungAusgeben(int zeile) {
+		System.out.print(zeile+1 + ": ");
+	}
+
+	private void überschriftAusgeben() {
+		System.out.println("   A | B | C");
+		zeilenTrennen();
+	}
+
+	private void zeilenTrennen() {
+		System.out.println("-------------");
+	}
+
+	private void zeileAusgeben(int[] zeile) {
+		for(int spalte = 0; spalte < zeile.length; spalte++) {
+			System.out.print(zeile[spalte]);	
+			zeichenTrennen(spalte);
+		}
+	}
+	
+	private void zeichenTrennen(int spalte) {
+		if (spalte == 0 || spalte == 1) {
+			System.out.print(" | ");
+		} else {
+			System.out.print("\r\n");
+			zeilenTrennen();
+		}
+	}
+	
+	public static void main(String [] args) {
+		new SpieleEngine().spielbrettVisualisieren();
+	}
+}

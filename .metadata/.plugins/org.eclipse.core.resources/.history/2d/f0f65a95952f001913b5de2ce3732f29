@@ -1,0 +1,33 @@
+package galgen;
+
+public class Galgenmännchen {
+	private char[] gesuchtesArray;
+	private char[] geratenerZustand;
+	
+	public Galgenmännchen(String gesuchtesWort) {
+		gesuchtesArray = gesuchtesWort.toCharArray();
+		geratenenZustandInitialisieren();   
+	}
+
+	private void geratenenZustandInitialisieren() {
+		geratenerZustand = new char[gesuchtesArray.length];
+		
+		for(int counter=0;counter<geratenerZustand.length;counter++) {
+			geratenerZustand[counter] = '-';
+		}
+	}
+	 
+	public String rateBuchstabe(char buchstabe) {
+		String ausgabe = "";
+		
+		ausgabe = geratenenZustandAusgeben(ausgabe);
+		
+		return ausgabe;
+	}
+
+	private String geratenenZustandAusgeben(String ausgabe) {
+		for(char i:geratenerZustand) ausgabe = ausgabe.concat(String.valueOf(i));
+		return ausgabe;
+	}
+	 
+}

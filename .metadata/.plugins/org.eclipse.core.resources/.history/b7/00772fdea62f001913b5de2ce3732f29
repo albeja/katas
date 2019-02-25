@@ -1,0 +1,27 @@
+package tictactoe;
+
+public class Spielbrett {
+	private int[][] positionen;
+	
+	public Spielbrett() {
+		positionen = new int[2][3];
+	}
+	
+	public int[][] ausgabe(){
+		return positionen;
+	}
+	
+	public boolean zugSpielerEins(int x, int y) {
+		if (feldIstFrei(x, y)) {
+			
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private boolean feldIstFrei(int x, int y) {
+		
+		return ;
+	}
+}

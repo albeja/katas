@@ -1,0 +1,11 @@
+package tictactoe;
+
+public class Spielbrett {
+	public int[][] ausgabe(){
+		return new int[2][3];
+	}
+	
+	public void zugSpielerEins(int x, int y) {
+		
+	}
+}

@@ -1,0 +1,35 @@
+package tictactoe;
+
+public class Spielbrett {
+	//TODO: Feld als eigene Klasse --> von 1 bis 9 durchnummerieren
+	private Feld[] felder;
+	
+	public Spielbrett() {
+		felder = new Feld[9];
+	}
+	
+	public Feld[] ausgabe(){
+		return felder;
+	}
+	
+	public boolean zug(char spalte, int zeile, int spieler) {
+		if (felder.) {
+			feldBelegen(x, y, spieler);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	private void feldBelegen(int x, int y, int spieler) {
+		positionen[x][y] = spieler;
+	}
+	
+	private Feld getFeld(char spalte, int zeile) {
+		for(Feld feld:felder) {
+			if (spalte == feld.spalte && zeile == feld.zeile) return feld;
+		}
+		
+		return null;
+	}
+}

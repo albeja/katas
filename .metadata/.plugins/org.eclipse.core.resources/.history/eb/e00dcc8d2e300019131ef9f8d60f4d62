@@ -1,0 +1,16 @@
+package tictactoe;
+
+public class Feld {
+	char spalte;
+	int zeile;
+	
+	Feld(char spalte, int zeile) {
+		this.spalte = spalte;
+		this.zeile = zeile;
+	}
+	
+	
+	private boolean feldIstFrei(int x, int y) {
+		return positionen[x][y] == 0;
+	}
+}

@@ -1,0 +1,26 @@
+package russischeBauernmultiplikation;
+
+import java.util.List;
+
+public class Ergebnis {
+	private List<int[]> zahlen;
+	private int ergebnis;
+
+	public List<int[]> getZahlen() {
+		return zahlen;
+	}
+	public int getErgebnis() {
+		return ergebnis;
+	}
+
+	public void setZahlen(List<int[]> zahlen) {
+		this.zahlen = zahlen;
+	}
+	public void setErgebnis(int ergebnis) {
+		this.ergebnis = ergebnis;
+	}
+	
+	public boolean equals(Ergebnis toCompare) {
+		return toCompare.getErgebnis() == this.ergebnis;
+	}
+}

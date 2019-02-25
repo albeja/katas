@@ -1,0 +1,15 @@
+package galgen;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class GalgenTest {
+
+	@Test
+	public void test() {
+		Galgenmännchen spiel = new Galgenmännchen("developer");
+		fail("Not yet implemented");
+	}
+
+}

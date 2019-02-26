@@ -1,9 +1,0 @@
-package galgen;
-
-public class Galgenmännchen {
-	 
-	   public Galgenmännchen(String gesuchtesWort) {}
-	 
-	   public String RateBuchstabe(char buchstabe) {return ""; }
-	 
-}

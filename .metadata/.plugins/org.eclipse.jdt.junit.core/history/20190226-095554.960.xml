@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="tictactoe" project="katas" tests="6" started="6" failures="0" errors="0" ignored="0">
+  <testsuite name="tictactoe.SpielbrettTest" time="0.0">
+    <testcase name="zugUngueltigerSpieler" classname="tictactoe.SpielbrettTest" time="0.0"/>
+    <testcase name="zugUngueltigePosition" classname="tictactoe.SpielbrettTest" time="0.0"/>
+    <testcase name="zugBelegtesFeld" classname="tictactoe.SpielbrettTest" time="0.0"/>
+    <testcase name="zugFeldFrei" classname="tictactoe.SpielbrettTest" time="0.0"/>
+    <testcase name="hasZahlReiheTest" classname="tictactoe.SpielbrettTest" time="0.0"/>
+    <testcase name="initialization" classname="tictactoe.SpielbrettTest" time="0.0"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,21 @@
+package tictactoe;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class SpieleEvaluatorTest {
+	Spielbrett brett;
+	
+	@Before
+	public void setUp() throws Exception {
+		brett = new Spielbrett();
+	}
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

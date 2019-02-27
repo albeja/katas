@@ -5,54 +5,26 @@ import java.util.Scanner;
 public class SpieleEngine {
 	private Spielbrett brett = new Spielbrett();
 	private Scanner scanner = new Scanner(System.in);
+	private SpieleEvaluator evaluator = new SpieleEvaluator();
 	private int spieler = 1;
 	private GrafikEngine grafik = new GrafikEngine();
 
 	public void naechstenSpielzugBeginnen() {
-		grafik.ausgabe(brett.ausgabe());
-		inputVerarbeiten();
+		System.out.print(grafik.ausgabe(brett.ausgabe()));
+		System.out.print("Kommando: ");
+		inputVerarbeiten(scanner.next());
 	}
 
-	private void inputVerarbeiten() {
-		System.out.print("Kommando: ");
-		String kommando = scanner.next();
+	public void inputVerarbeiten(String kommando) {
 		try {
 			eingabeVerarbeiten(kommando);
 		} catch(Exception e){
 			System.out.println(e.getMessage());
-			inputVerarbeiten();
-		}
-	}
-	
-	private void spielstandEvaluieren() {
-		if (unentschieden()) {
-			System.out.println("Unentschieden. Entweder neu oder ende wählen.");
-			naechstenSpielzugBeginnen();
-		} else if (spielerEinsGewinnt()) {
-			System.out.println("Spieler 1 gewinnt. Entweder neu oder ende wählen.");
-			naechstenSpielzugBeginnen();
-		} else if (spielerZweiGewinnt()) {
-			System.out.println("Spieler 2 gewinnt. Entweder neu oder ende wählen.");
-			naechstenSpielzugBeginnen();
-		} else {
 			naechstenSpielzugBeginnen();
 		}
-	}
-
-	private boolean unentschieden() {
-		return brett.isJedesFeldBelegt();
-	}
-
-	private boolean spielerZweiGewinnt() {
-		return brett.hasZahlEineReihe(2);
-	}
-
-	private boolean spielerEinsGewinnt() {
-		return brett.hasZahlEineReihe(1);
 	}
 
 	private void eingabeVerarbeiten(String kommando) throws Exception {
-		//TODO: Spiel geht nach Zug weiter
 		switch (kommando) {
 			case "A0": spielzugDurchführen(0); break;
 			case "B0": spielzugDurchführen(1); break;
@@ -73,7 +45,8 @@ public class SpieleEngine {
 	private void spielzugDurchführen(int spielfeld) throws Exception {
 		brett.zug(spielfeld, spieler);
 		spielerWechsel();
-		spielstandEvaluieren();
+		evaluator.spielstandEvaluieren(brett);
+		naechstenSpielzugBeginnen();
 	}
 
 	private void spielerWechsel() {

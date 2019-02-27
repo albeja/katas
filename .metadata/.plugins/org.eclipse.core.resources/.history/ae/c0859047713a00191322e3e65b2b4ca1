@@ -1,0 +1,22 @@
+package tictactoe;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class GrafikEngineTest {
+	private GrafikEngine engine;
+	
+	@BeforeClass
+	public void setUp() throws Exception {
+		engine = new GrafikEngine();
+	}
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

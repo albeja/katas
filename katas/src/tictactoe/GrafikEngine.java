@@ -1,50 +1,53 @@
 package tictactoe;
 
 public class GrafikEngine {
-	public void ausgabe(int[][] spielstand) {
-		überschriftAusgeben();
-		zeilenAusgeben(spielstand);
+	private static final String zeilenumbruch = "\r\n";
+
+	public String ausgabe(int[][] spielstand) {
+		return überschriftAusgeben() + zeilenAusgeben(spielstand);
 	}
 
-	private void zeilenAusgeben(int[][] spielstand) {
+	private String zeilenAusgeben(int[][] spielstand) {
+		String ausgabe = "";
 		for(int zeile=0; zeile < spielstand.length; zeile++) {
-			System.out.print(zeile + ": ");
-			zeileAusgeben(spielstand[zeile]);
+			ausgabe += zeile + ": ";
+			ausgabe += zeileAusgeben(spielstand[zeile]);
 		};
+		return ausgabe;
 	}
 	
-	private void überschriftAusgeben() {
-		System.out.println("   A | B | C");
-		zeilenTrennen();
+	private String überschriftAusgeben() {
+		return "   A | B | C" + zeilenumbruch + zeilenTrennen();
 	}
 
-	private void zeilenTrennen() {
-		System.out.println("-------------");
+	private String zeilenTrennen() {
+		return "-------------" + zeilenumbruch;
 	}
 
-	private void zeileAusgeben(int[] zeile) {
+	private String zeileAusgeben(int[] zeile) {
+		String ausgabe = "";
 		for(int spalte = 0; spalte < zeile.length; spalte++) {
-			feldAusgeben(zeile, spalte);
-			zeichenTrennen(spalte);
+			ausgabe += feldAusgeben(zeile, spalte);
+			ausgabe += zeichenTrennen(spalte);
 		}
+		return ausgabe;
 	}
 
-	private void feldAusgeben(int[] zeile, int spalte) {
+	private String feldAusgeben(int[] zeile, int spalte) {
 		if (zeile[spalte] == 1) {
-			System.out.print("X");	
+			return "X";	
 		} else if (zeile[spalte] == 2) {
-			System.out.print("O");	
+			return "O";	
 		} else {
-			System.out.print(" ");
+			return " ";
 		}
 	}
 	
-	private void zeichenTrennen(int spalte) {
+	private String zeichenTrennen(int spalte) {
 		if (spalte == 0 || spalte == 1) {
-			System.out.print(" | ");
+			return " | ";
 		} else {
-			System.out.print("\r\n");
-			zeilenTrennen();
+			return zeilenumbruch + zeilenTrennen();
 		}
 	}
 }

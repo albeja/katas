@@ -5,3 +5,4 @@
 1551170679124	Inline local variable 'actual'
 1551173189088	Delete element
 1551259031969	Extract constant 'zeilenumbruch'
+1551361970033	Extract method 'naechstenSpielzugStarten'

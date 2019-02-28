@@ -1,0 +1,21 @@
+package tictactoe;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class SpieleEngineTest {
+	private SpieleEngine engine;
+	
+	@Before
+	public void setUp() throws Exception {
+		engine = new SpieleEngine();
+	}
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

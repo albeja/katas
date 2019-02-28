@@ -2,51 +2,59 @@ package tictactoe;
 
 import java.util.Scanner;
 
+import tictactoe.SpieleEvaluator.Spielstand;
+
 public class SpieleEngine {
 	private Spielbrett brett = new Spielbrett();
-	private Scanner scanner = new Scanner(System.in);
+	private Scanner scanner;
 	private SpieleEvaluator evaluator = new SpieleEvaluator();
 	private int spieler = 1;
 	private GrafikEngine grafik = new GrafikEngine();
-
-	public void naechstenSpielzugBeginnen() {
+	private Spielstand spielstand = Spielstand.WEITER;
+	
+	public void spielInitialisieren (Scanner inputScanner){
+		this.scanner = inputScanner;
+	}
+	
+	public Spielstand spielBeginnen() {
+		while (spielstand == Spielstand.WEITER) {
+			naechstenSpielzugStarten();
+		}
+		
 		System.out.print(grafik.ausgabe(brett.ausgabe()));
-		System.out.print("Kommando: ");
-		inputVerarbeiten(scanner.next());
+		return spielstand;
 	}
 
-	public void inputVerarbeiten(String kommando) {
+	private void naechstenSpielzugStarten() {
+		System.out.print(grafik.ausgabe(brett.ausgabe()));
+		System.out.print("Kommando: ");
 		try {
-			eingabeVerarbeiten(kommando);
-		} catch(Exception e){
+			spielstand = eingabeVerarbeiten(scanner.next());
+		} catch (Exception e){
 			System.out.println(e.getMessage());
-			naechstenSpielzugBeginnen();
 		}
 	}
 
-	private void eingabeVerarbeiten(String kommando) throws Exception {
+	private Spielstand eingabeVerarbeiten(String kommando) throws Exception {
 		switch (kommando) {
-			case "A0": spielzugDurchführen(0); break;
-			case "B0": spielzugDurchführen(1); break;
-			case "C0": spielzugDurchführen(2); break;
-	        case "A1": spielzugDurchführen(3); break;
-	        case "B1": spielzugDurchführen(4); break;
-	        case "C1": spielzugDurchführen(5); break;
-	        case "A2": spielzugDurchführen(6); break;
-	        case "B2": spielzugDurchführen(7); break;
-	        case "C2": spielzugDurchführen(8); break;
-	        case "neu": brett = new Spielbrett(); this.naechstenSpielzugBeginnen(); break;
-	        case "ende": break;
+			case "A0": return spielzugDurchführen(0);
+			case "B0": return spielzugDurchführen(1);
+			case "C0": return spielzugDurchführen(2);
+	        case "A1": return spielzugDurchführen(3);
+	        case "B1": return spielzugDurchführen(4);
+	        case "C1": return spielzugDurchführen(5);
+	        case "A2": return spielzugDurchführen(6);
+	        case "B2": return spielzugDurchführen(7);
+	        case "C2": return spielzugDurchführen(8);
 	        default:
 	        	throw new Exception("Ungültiger Befehl.");
 		}	
 	}
 
-	private void spielzugDurchführen(int spielfeld) throws Exception {
+	private Spielstand spielzugDurchführen(int spielfeld) throws Exception {
 		brett.zug(spielfeld, spieler);
 		spielerWechsel();
-		evaluator.spielstandEvaluieren(brett);
-		naechstenSpielzugBeginnen();
+		return evaluator.spielstandEvaluieren(brett);
 	}
 
 	private void spielerWechsel() {
@@ -55,6 +63,8 @@ public class SpieleEngine {
 	}
 		
 	public static void main(String [] args) {
-		new SpieleEngine().naechstenSpielzugBeginnen();
+		SpieleEngine engine = new SpieleEngine();
+		engine.spielInitialisieren(new Scanner(System.in));
+		engine.spielBeginnen();
 	}
 }

@@ -1,0 +1,27 @@
+package tictactoe;
+
+import static org.junit.Assert.*;
+
+import java.util.Scanner;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class SpieleEngineTest {
+	private SpieleEngine engine;
+	
+	@Before
+	public void setUp() throws Exception {
+		engine = new SpieleEngine();
+	}
+
+	@Test
+	public void alleZuegeUnentschieden() {
+		Scanner scanner = new Scanner("A0 A1 A2 B0 B1 B2 C0 C2 C1 ende");
+		engine.spielInitialisieren(scanner);
+		engine.naechstenSpielzugBeginnen();
+		
+		assertEquals(Spielstand.UNENTSCHIEDEN, engine.naechstenSpielzugBeginnen());
+	}
+
+}

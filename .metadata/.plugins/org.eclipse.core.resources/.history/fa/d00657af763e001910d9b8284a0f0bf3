@@ -1,0 +1,36 @@
+package froehlicheZahl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+
+public class FroehlicheZahlCalculator {
+	public boolean isFroehlicheZahl(int zahl) {
+		int[] ziffern;
+		
+		while(isZahlZerlegbar(zahl)) {
+			ziffern  = zahlZerlegen(zahl);
+			// ziffern = zahlZerlegen(zahl)
+			
+			// quadrierteZiffern = quadrateBilden(ziffern)
+			
+			// zahl = summeBilden(quadrierteZiffern);
+		}
+		
+		return false;
+	}
+
+	private int[] zahlZerlegen(Integer zahl) {
+		//int[] digits = zahl.toString().chars().map(i -> i - '0').toArray();
+		List<Integer> ziffern = new ArrayList<Integer>();
+		for (char i : zahl.toString().toCharArray()) {
+			ziffern.add(new Integer(i));
+		}
+		return null;
+	}
+
+	private boolean isZahlZerlegbar(int zahl) {
+		return zahl < 10 && zahl > 0;
+	}
+
+}

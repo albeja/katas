@@ -1,0 +1,66 @@
+package froehlicheZahl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class FroehlicheZahlCalculator {
+	public boolean isFroehlicheZahl(int zahl) {
+		List<Integer> ziffern;
+		List<Integer> quadrierteZiffern;
+		int ergebnis = zahl;
+		int ctr = 0;
+		
+		while(isZahlZerlegbar(ergebnis) && ctr < 100) {
+			ziffern  = zahlZerlegen(zahl);
+			
+			quadrierteZiffern = quadrateBilden(ziffern);
+			
+			
+			ergebnis = summeBilden(quadrierteZiffern);
+			
+			ctr++;
+		}
+		
+		return ergebnis == 1;
+	}
+
+	private int summeBilden(List<Integer> quadrierteZiffern) {
+		int ergebnis = 0;
+		
+		for(int i : quadrierteZiffern) {
+			ergebnis += i;
+		}
+		
+		return ergebnis;
+	}
+
+	private List<Integer> quadrateBilden(List<Integer> ziffern) {
+		List<Integer> quadrierteZiffern = new ArrayList<Integer>();
+		
+		for(int i : ziffern) {
+			quadrierteZiffern.add(i * i);
+		}
+		
+		return quadrierteZiffern;
+	}
+
+	private List<Integer> zahlZerlegen(Integer zahl) {
+		// int[] intTab = String.valueOf(number).chars().map(Character::getNumericValue).toArray();
+		
+		// int[] digits = intAsString.chars().map(i -> i - '0').toArray();
+		char[] ziffern2 = zahl.toString().toCharArray();
+		
+		List<Integer> ziffern = new ArrayList<Integer>();
+		
+		for (char i : ziffern2) {
+			ziffern.add(new Integer.valueOf(i));
+		}
+		
+		return ziffern;
+	}
+
+	private boolean isZahlZerlegbar(int zahl) {
+		return zahl >= 10;
+	}
+
+}

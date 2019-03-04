@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract method &apos;private int neueZahlErmitteln(int ergebnis)&apos; from &apos;froehlicheZahl.FroehlicheZahlCalculator.isFroehlicheZahl()&apos; to &apos;froehlicheZahl.FroehlicheZahlCalculator&apos;&#x0D;&#x0A;- Original project: &apos;katas&apos;&#x0D;&#x0A;- Method name: &apos;neueZahlErmitteln&apos;&#x0D;&#x0A;- Destination type: &apos;froehlicheZahl.FroehlicheZahlCalculator&apos;&#x0D;&#x0A;- Declared visibility: &apos;private&apos;" comments="false" description="Extract method &apos;neueZahlErmitteln&apos;" destination="0" exceptions="false" flags="786434" id="org.eclipse.jdt.ui.extract.method" input="/src&lt;froehlicheZahl{FroehlicheZahlCalculator.java" name="neueZahlErmitteln" replace="false" selection="334 133" stamp="1551705062451" version="1.0" visibility="2"/>
+</session>

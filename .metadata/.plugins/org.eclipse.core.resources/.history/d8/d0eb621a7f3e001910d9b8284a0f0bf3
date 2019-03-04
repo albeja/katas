@@ -15,10 +15,12 @@ public class FroehlicheZahlCalculator {
 	}
 
 	private int neueZahlErmitteln(int ergebnis) {
-		List<Integer> ziffern = zahlZerlegen(ergebnis);
-		List<Integer> quadrierteZiffern = quadrateBilden(ziffern);
-		
-		return summeBilden(quadrierteZiffern);
+		List<Integer> ziffern;
+		List<Integer> quadrierteZiffern;
+		ziffern  = zahlZerlegen(ergebnis);
+		quadrierteZiffern = quadrateBilden(ziffern);
+		ergebnis = summeBilden(quadrierteZiffern);
+		return ergebnis;
 	}
 
 	private int summeBilden(List<Integer> quadrierteZiffern) {

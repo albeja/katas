@@ -1,0 +1,47 @@
+package froehlicheZahl;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class FroehlicheZahlCalculator {
+	public boolean isFroehlicheZahl(int zahl) {
+		List<Integer> ziffern;
+		List<Integer> quadrierteZiffern;
+		int ergebnis = zahl;
+		int ctr = 0;
+		
+		while(isZahlZerlegbar(ergebnis) && ctr < 100) {
+			ziffern  = zahlZerlegen(ergebnis);
+			quadrierteZiffern = quadrateBilden(ziffern);
+			ergebnis = summeBilden(quadrierteZiffern);
+			
+			ctr++;
+		}
+		
+		return ergebnis == 1;
+	}
+
+	private Integer summeBilden(List<Integer> quadrierteZiffern) {
+		return quadrierteZiffern.stream().reduce((x,y) -> x + y);
+		int ergebnis = 0;
+		
+		for(int i : quadrierteZiffern) {
+			ergebnis += i;
+		}
+		
+		return ergebnis;
+	}
+
+	private List<Integer> quadrateBilden(List<Integer> ziffern) {
+		return ziffern.stream().map(i -> i*i).collect(Collectors.toList());
+	}
+
+	private List<Integer> zahlZerlegen(Integer zahl) {
+		return String.valueOf(zahl).chars().map(Character::getNumericValue).boxed().collect(Collectors.toList());
+	}
+
+	private boolean isZahlZerlegbar(int zahl) {
+		return zahl >= 10;
+	}
+
+}

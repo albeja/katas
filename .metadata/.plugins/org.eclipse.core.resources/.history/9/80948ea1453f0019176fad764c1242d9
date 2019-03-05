@@ -5,7 +5,7 @@ public class MinesweeperEngine {
 	private char[][] numbers;
 	
 	public String getSolution(String mineField) {
-		parseInput(mineField);
+		parseMineField(mineField);
 		generateNumbers();
 		return generateSolutionString();
 	}
@@ -68,22 +68,15 @@ public class MinesweeperEngine {
 		return numberOfBombs;	
 	}
 
-	private void parseInput(String mineField) {
+	private void parseMineField(String mineField) {
 		String[] parsedLines = mineField.split("\r\n");
 				
-		initializeParsedField(parsedLines);
-		initizalizeNumbers(parsedLines);
-	}
-
-	private void initizalizeNumbers(String[] parsedLines) {
-		this.numbers = new char[parsedLines.length][parsedLines[0].length()];
-	}
-
-	private void initializeParsedField(String[] parsedLines) {
 		this.parsedFields = new char[parsedLines.length][parsedLines[0].length()];
 		
 		for(int lineCtr=0;lineCtr<parsedLines.length;lineCtr++) {
 			this.parsedFields[lineCtr] = parsedLines[lineCtr].toCharArray();
 		}
+		
+		this.numbers = new char[parsedLines.length][parsedLines[0].length()];
 	}
 }

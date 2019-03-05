@@ -23,3 +23,6 @@
 1551789600584	Rename local variable 'aktuelleZeile'
 1551789610865	Rename local variable 'aktuelleSpalte'
 1551789694923	Extract method 'generateNumber'
+1551790390743	Rename method 'parseMineField'
+1551790401258	Extract method 'initializeParsedField'
+1551790414861	Extract method 'initizalizeNumbers'

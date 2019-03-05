@@ -72,10 +72,7 @@ public class MinesweeperEngine {
 		String[] parsedLines = mineField.split("\r\n");
 				
 		initializeParsedField(parsedLines);
-		initizalizeNumbers(parsedLines);
-	}
-
-	private void initizalizeNumbers(String[] parsedLines) {
+		
 		this.numbers = new char[parsedLines.length][parsedLines[0].length()];
 	}
 

@@ -4,16 +4,19 @@ import java.util.Scanner;
 
 public class NBackApplication {
 	private String aktuelleSerie = "";
-	private int n = 0;
-	private int korrektErraten = 0;
+	private int n;
 	
 	public double starteTest(int n, int reizdauerMs, String serie, Scanner scanner) {
-		this.korrektErraten = 0;
+		String input = "";
+		int korrektErraten = 0;
 		this.aktuelleSerie = serie;
 		this.n = n;
 		
 		for(int iterator = 0; iterator < serie.length(); iterator++) {
-			if (hatKorrektErraten(scanner.next(), iterator)) korrektErraten++;
+			
+			input = scanner.next();
+
+			if (hatKorrektErraten(input, iterator)) korrektErraten++;
 		}
 		
 		return new Double(korrektErraten * 100 / serie.length() );

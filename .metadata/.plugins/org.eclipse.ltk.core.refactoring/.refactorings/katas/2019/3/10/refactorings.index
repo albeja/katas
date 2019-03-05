@@ -27,3 +27,4 @@
 1551790401258	Extract method 'initializeParsedField'
 1551790414861	Extract method 'initizalizeNumbers'
 1551792291549	Rename type 'NBackTest'
+1551800565030	Extract method 'hatKorrektErraten'

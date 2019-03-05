@@ -1,0 +1,15 @@
+package nBack;
+
+public class NBackApplication {
+	public void initializeSeries(String series) {
+		if (series.contentEquals("")) {
+			
+		} else {
+			
+		}
+	}
+	
+	public double startTest(String name, int n, int reizdauerMs, int anzahlReize) {
+		return 0;
+	}
+}

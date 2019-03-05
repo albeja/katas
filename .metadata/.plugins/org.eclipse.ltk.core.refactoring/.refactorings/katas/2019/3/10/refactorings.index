@@ -1,3 +1,5 @@
 1551705062451	Extract method 'neueZahlErmitteln'
 1551769763381	Extract method 'zeileAufbauen'
 1551770074404	Rename local variable 'baumString'
+1551771283579	Delete element
+1551782712952	Extract method 'isBombe'

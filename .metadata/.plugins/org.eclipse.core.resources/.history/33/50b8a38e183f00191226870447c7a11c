@@ -1,0 +1,31 @@
+package nBack;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class NBackApplicationTest {
+	private NBackApplication application = new NBackApplication();
+
+	@Test
+	public void startTestCorrectlySolved() {
+		
+	}
+
+	@Test
+	public void startTestPartlySolved() {
+
+	}
+	
+	@Test
+	public void startTestEverythingWrong() {
+
+	}
+	
+	@Test
+	public void startTestAborted() {
+
+	}
+	
+}

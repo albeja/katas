@@ -1,0 +1,18 @@
+package mineSweeperHack;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class MinesweeperEngineTest {
+	private MinesweeperEngine engine = new MinesweeperEngine();
+
+	@Test
+	public void test() {
+		String expectedSolution = "";
+		String mineField = "";
+		
+		assertEquals(expectedSolution, engine.getSolution(mineField));
+	}
+
+}

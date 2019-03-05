@@ -1,0 +1,38 @@
+package mineSweeperHack;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MinesweeperEngine {
+	public String getSolution(String mineField) {
+		char[][] parsedFields = parseMineField(mineField);
+		
+		int[][] solution = calculateSolution(parsedFields);
+		
+		// return generateSolutionString(solution);
+		return "";
+	}
+	
+	private int[][] calculateSolution(char[][] parsedFields) {
+		// loope über alle felder
+		
+			// zähle benachbarte bomben
+		
+			// trage anzahl in feld ein
+		
+		return new int[][] {};
+	
+	}
+
+	private char[][] parseMineField(String mineField) {
+		String[] parsedLines = mineField.split("\r\n");
+				
+		char[][] parsedFields = new char[parsedLines.length][parsedLines[0].length()];
+		
+		for(int lineCtr=0;lineCtr<parsedLines.length;lineCtr++) {
+			parsedFields[lineCtr] = parsedLines[lineCtr].toCharArray();
+		}
+		
+		return parsedFields;
+	}
+}

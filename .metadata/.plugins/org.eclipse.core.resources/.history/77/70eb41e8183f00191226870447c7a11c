@@ -1,0 +1,31 @@
+package nBack;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class NBackApplicationTest {
+	private NBackApplication application = new NBackApplication();
+
+	@Test
+	public void startTestCorrectlySolved() {
+		application.startTest("Peter Mueller", 3, 100, 100);
+	}
+
+	@Test
+	public void startTestPartlySolved() {
+		application.startTest("Peter Mueller", 3, 100, 100);
+	}
+	
+	@Test
+	public void startTestEverythingWrong() {
+		application.startTest("Peter Mueller", 3, 100, 100);
+	}
+	
+	@Test
+	public void startTestAborted() {
+		application.startTest("Peter Mueller", 3, 100, 100);
+	}
+	
+}

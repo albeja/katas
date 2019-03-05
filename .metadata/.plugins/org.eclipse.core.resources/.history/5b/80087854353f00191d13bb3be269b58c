@@ -1,0 +1,63 @@
+package mineSweeperHack;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MinesweeperEngine {
+	private char[][] parsedFields;
+	private int[][] ordnungsZahlen;
+	
+	public String getSolution(String mineField) {
+		parseMineField(mineField);
+		
+		generateSolution();
+		
+		// return generateSolutionString(solution);
+		return "";
+	}
+	
+	private void generateSolution() {
+		int benachbarteBomben = 0;
+		
+		for(int zeile=0; zeile<parsedFields.length; zeile++) {
+			for(int spalte=0; spalte<parsedFields[zeile].length; spalte++) {
+				if (isBombe(zeile, spalte)) continue;
+				
+				benachbarteBomben = zaehleBenachbarteBomben(zeile, spalte);
+				ordnungsZahlen[zeile][spalte] = benachbarteBomben;
+			}
+		}
+		
+	}
+
+	private boolean isBombe(int zeile, int spalte) {
+		return parsedFields[zeile][spalte] == '*';
+	}
+
+	private int zaehleBenachbarteBomben(int aktuelleZeile, int aktuelleSpalte) {
+		int anzahlBenachbarteBomben = 0;
+		
+		if (isBombe(aktuelleZeile, aktuelleSpalte - 1)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile - 1, aktuelleSpalte - 1)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile - 1, aktuelleSpalte)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile - 1, aktuelleSpalte + 1)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile, aktuelleSpalte + 1)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile + 1, aktuelleSpalte + 1)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile + 1, aktuelleSpalte)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile + 1, aktuelleSpalte - 1)) anzahlBenachbarteBomben++;
+		
+		return anzahlBenachbarteBomben;	
+	}
+
+	private void parseMineField(String mineField) {
+		String[] parsedLines = mineField.split("\r\n");
+				
+		this.parsedFields = new char[parsedLines.length][parsedLines[0].length()];
+		
+		for(int lineCtr=0;lineCtr<parsedLines.length;lineCtr++) {
+			this.parsedFields[lineCtr] = parsedLines[lineCtr].toCharArray();
+		}
+		
+		this.ordnungsZahlen = new int[parsedLines.length][parsedLines[0].length()];
+	}
+}

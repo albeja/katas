@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class FroehlicheZahlCalculator {
 	public boolean isFroehlicheZahl(int zahl) {
-		int ergebnis = zahl;
+		int ergebnis = neueZahlErmitteln(zahl);
 		
 		while(isZahlZerlegbar(ergebnis)) {
 			ergebnis = neueZahlErmitteln(ergebnis);

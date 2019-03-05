@@ -1,20 +1,15 @@
 package froehlicheZahl;
 
 import static org.junit.Assert.*;
-
-import org.junit.Before;
 import org.junit.Test;
 
 public class FroehlicheZahlCalculatorTest {
 	private FroehlicheZahlCalculator calculator = new FroehlicheZahlCalculator();
 	
-	@Before
-	public void setUp() throws Exception {
-	}
-
 	@Test
 	public void isFroehlicheZahlTrue() {
 		assertTrue(calculator.isFroehlicheZahl(1));
+		assertTrue(calculator.isFroehlicheZahl(7));
 		assertTrue(calculator.isFroehlicheZahl(10));
 		assertTrue(calculator.isFroehlicheZahl(19));
 		assertTrue(calculator.isFroehlicheZahl(49));

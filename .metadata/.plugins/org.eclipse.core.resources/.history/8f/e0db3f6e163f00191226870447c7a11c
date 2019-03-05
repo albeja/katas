@@ -1,0 +1,53 @@
+package tannenbaum;
+
+public class Tannenbaum {
+	public String zeichnen(int hoehe) {
+		int maximaleBreite = hoehe*2 - 1;
+		String baumString= "";
+		
+		baumString = baumAufbauen(hoehe, maximaleBreite, baumString);
+		baumString = stumpfAnfuegen(hoehe - 1, maximaleBreite, baumString);
+		
+		return baumString;
+	}
+
+	private String baumAufbauen(int hoehe, int maximaleBreite, String baumString) {
+		for (int aktuelleZeile=1; aktuelleZeile < hoehe + 1; aktuelleZeile++) {
+			baumString = baumString.concat(zeileAufbauen(hoehe, baumString, aktuelleZeile));
+		}
+		
+		return baumString;
+	}
+
+	private String zeileAufbauen(int hoehe, String zeile2, int aktuelleZeile) {
+		String zeile = "";
+		
+		int anzahlSpaces = hoehe - aktuelleZeile;
+		String spaceString = substringGenerator(anzahlSpaces, " ");
+		int anzahlX = aktuelleZeile*2 - 1;
+			
+		zeile = zeile.concat(spaceString);
+		zeile = zeile.concat(substringGenerator(anzahlX, "X"));
+		zeile = zeile.concat(spaceString);
+		zeile = zeile.concat("\r\n");
+		return zeile;
+	}
+
+	private String stumpfAnfuegen(int anzahlSpaces, int maximaleBreite, String baumString) {
+		String spaceString = substringGenerator(anzahlSpaces, " ");
+		
+		baumString = baumString.concat(spaceString);
+		baumString = baumString.concat("I");
+		baumString = baumString.concat(spaceString);
+		
+		return baumString;
+	}
+	
+	private String substringGenerator(int anzahlSpaces, String baseString) {
+		String substring = "";
+		for(int angefuegt=0; angefuegt<anzahlSpaces; angefuegt++) {
+			substring = substring.concat(baseString);
+		}
+		return substring;
+	}
+}

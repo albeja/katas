@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="TextWrapperTests" project="katas" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="textUmbruch.TextWrapperTests" time="0.001">
-    <testcase name="testWithNine" classname="textUmbruch.TextWrapperTests" time="0.001"/>
-    <testcase name="testWithFourteen" classname="textUmbruch.TextWrapperTests" time="0.0"/>
-  </testsuite>
-</testrun>

@@ -1,0 +1,9 @@
+package nBack;
+
+import java.util.Scanner;
+
+public class NBackApplication {
+	public double starteTest(int n, int reizdauerMs, String serie, Scanner inputScanner) {
+		
+	}
+}

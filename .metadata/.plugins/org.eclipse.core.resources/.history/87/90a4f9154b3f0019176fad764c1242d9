@@ -1,0 +1,18 @@
+package nBack;
+
+import static org.junit.Assert.*;
+
+import java.util.Scanner;
+
+import org.junit.Test;
+
+public class NBackApplicationTest {
+	private NBackApplication application = new NBackApplication();
+
+	@Test
+	public void test() {
+		Scanner scanner = new Scanner("C B A A B A A A A A C A A D D E F G H I");
+		assertEquals(100, application.starteTest(3, 500, "C B A A B A A A A A C A A D D E F G H I", scanner));
+	}
+
+}

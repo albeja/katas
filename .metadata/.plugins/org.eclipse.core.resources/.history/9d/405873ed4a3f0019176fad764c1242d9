@@ -1,0 +1,16 @@
+package nBack;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class NBackApplicationTest {
+	private NBackApplication application = new NBackApplication();
+
+	@Test
+	public void test() {
+		application.starteTest(3, 500, "C B A A B A A A A A C A A D D E F G H I);
+	}
+
+}

@@ -1,0 +1,18 @@
+package nBack;
+
+import static org.junit.Assert.*;
+
+import java.util.Scanner;
+
+import org.junit.Test;
+
+public class NBackApplicationTest {
+	private NBackApplication application = new NBackApplication();
+
+	@Test
+	public void test() {
+		Scanner scanner = new Scanner("n n n n j j j n j j n j j n n n n n n n");
+		assertEquals(100, Math.round(application.starteTest(3, 500, "CBAABAAAAACAADDEFGHI", scanner)));
+	}
+
+}

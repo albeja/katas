@@ -1,0 +1,7 @@
+package nBack;
+
+public class NBackApplication {
+	public void starteTest(String proband, int n, int reizdauerMs, String serie) {
+		
+	}
+}

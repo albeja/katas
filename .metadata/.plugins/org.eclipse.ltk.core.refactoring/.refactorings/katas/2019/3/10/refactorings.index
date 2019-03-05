@@ -26,3 +26,4 @@
 1551790390743	Rename method 'parseMineField'
 1551790401258	Extract method 'initializeParsedField'
 1551790414861	Extract method 'initizalizeNumbers'
+1551792291549	Rename type 'NBackTest'

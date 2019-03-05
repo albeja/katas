@@ -1,0 +1,28 @@
+package nBack;
+
+import java.util.Scanner;
+
+public class NBackApplication {
+	
+	public double starteTest(int n, int reizdauerMs, String serie, Scanner inputScanner) {
+		
+		for(int iterator = 0; iterator < serie.length(); iterator++) {
+			System.out.print(serie.charAt(iterator));
+			
+			// starte timer
+			
+			// erwarte input
+			
+			// wenn timer vorbei, lese input ein
+			
+			// verarbeite input
+			
+		}
+		
+		
+		
+		// werte aus (vergleich inputs vs. serie)
+			
+		return 0;
+	}
+}

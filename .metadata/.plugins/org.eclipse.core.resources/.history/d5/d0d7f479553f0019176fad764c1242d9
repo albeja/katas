@@ -1,0 +1,33 @@
+package nBack;
+
+import java.util.Scanner;
+
+public class NBackApplication {
+	
+	public double starteTest(int n, int reizdauerMs, String serie, Scanner scanner) {
+		String input = "";
+		int korrektErraten = 0;
+		
+		for(int iterator = 0; iterator < serie.length(); iterator++) {
+			System.out.print(serie.charAt(iterator));
+			
+			// starte timer
+			// wenn timer vorbei, lese input ein
+			
+			input = scanner.next();
+
+			if (!input.isEmpty()) {
+				if (serie.charAt(iterator) == serie.charAt(iterator - n)) {
+					korrektErraten++;
+				}
+			} else {
+				if (serie.charAt(iterator) != serie.charAt(iterator - n)) {
+					korrektErraten++;
+				}
+			}
+		}
+		
+		return new Double(korrektErraten / serie.length());
+		
+	}
+}

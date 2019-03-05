@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="MinesweeperEngineTest" project="katas" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="mineSweeperHack.MinesweeperEngineTest" time="0.0">
+    <testcase name="engineGetSolution3to5" classname="mineSweeperHack.MinesweeperEngineTest" time="0.0"/>
+    <testcase name="engineGetSolution4to4" classname="mineSweeperHack.MinesweeperEngineTest" time="0.0"/>
+  </testsuite>
+</testrun>

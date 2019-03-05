@@ -35,37 +35,36 @@ public class MinesweeperEngine {
 	private void generateNumbers() {
 		for(int line=0; line<parsedFields.length; line++) {
 			for(int column=0; column<parsedFields[line].length; column++) {
-				generateNumber(line, column);
+				if (isBombe(line, column)) {
+					numbers[line][column] = '*'; continue;
+				}
+				
+				numbers[line][column] = Character.forDigit(zaehleBenachbarteBomben(line, column), 10);
 			}
 		}		
 	}
 
-	private void generateNumber(int line, int column) {
-		if (isBomb(line, column)) numbers[line][column] = '*';
-		else numbers[line][column] = Character.forDigit(countBombsAround(line, column), 10);
-	}
-
-	private boolean isBomb(int line, int column) {
+	private boolean isBombe(int zeile, int spalte) {
 		try {
-			return parsedFields[line][column] == '*';			
+			return parsedFields[zeile][spalte] == '*';			
 		} catch (Exception e) {
 			return false;
 		}
 	}
 
-	private int countBombsAround(int currentLine, int currentColumn) {
-		int numberOfBombs = 0;
+	private int zaehleBenachbarteBomben(int aktuelleZeile, int aktuelleSpalte) {
+		int anzahlBenachbarteBomben = 0;
 		
-		if (isBomb(currentLine, currentColumn - 1)) numberOfBombs++;
-		if (isBomb(currentLine - 1, currentColumn - 1)) numberOfBombs++;
-		if (isBomb(currentLine - 1, currentColumn)) numberOfBombs++;
-		if (isBomb(currentLine - 1, currentColumn + 1)) numberOfBombs++;
-		if (isBomb(currentLine, currentColumn + 1)) numberOfBombs++;
-		if (isBomb(currentLine + 1, currentColumn + 1)) numberOfBombs++;
-		if (isBomb(currentLine + 1, currentColumn)) numberOfBombs++;
-		if (isBomb(currentLine + 1, currentColumn - 1)) numberOfBombs++;
+		if (isBombe(aktuelleZeile, aktuelleSpalte - 1)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile - 1, aktuelleSpalte - 1)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile - 1, aktuelleSpalte)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile - 1, aktuelleSpalte + 1)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile, aktuelleSpalte + 1)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile + 1, aktuelleSpalte + 1)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile + 1, aktuelleSpalte)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile + 1, aktuelleSpalte - 1)) anzahlBenachbarteBomben++;
 		
-		return numberOfBombs;	
+		return anzahlBenachbarteBomben;	
 	}
 
 	private void parseMineField(String mineField) {

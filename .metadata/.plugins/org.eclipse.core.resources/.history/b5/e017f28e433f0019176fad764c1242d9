@@ -1,0 +1,81 @@
+package mineSweeperHack;
+
+public class MinesweeperEngine {
+	private char[][] parsedFields;
+	private char[][] numbers;
+	
+	public String getSolution(String mineField) {
+		parseMineField(mineField);
+		generateNumbers();
+		return generateSolutionString();
+	}
+	
+	private String generateSolutionString() {
+		String mineField = "";
+		
+		for(int zeile=0; zeile<numbers.length; zeile++) {
+			mineField = mineField.concat(generateLineString(zeile));
+		}		
+		
+		return mineField;
+	}
+
+	private String generateLineString(int zeilenIndex) {
+		String zeilenString = "";
+		
+		for(int spalte=0; spalte<numbers[zeilenIndex].length; spalte++) {
+			zeilenString = zeilenString + numbers[zeilenIndex][spalte];
+		}
+		
+		zeilenString = zeilenString + "\r\n";
+		
+		return zeilenString;
+	}
+
+	private void generateNumbers() {
+		for(int zeile=0; zeile<parsedFields.length; zeile++) {
+			for(int spalte=0; spalte<parsedFields[zeile].length; spalte++) {
+				if (isBombe(zeile, spalte)) {
+					numbers[zeile][spalte] = '*'; continue;
+				}
+				
+				numbers[zeile][spalte] = Character.forDigit(zaehleBenachbarteBomben(zeile, spalte), 10);
+			}
+		}		
+	}
+
+	private boolean isBombe(int zeile, int spalte) {
+		try {
+			return parsedFields[zeile][spalte] == '*';			
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	private int zaehleBenachbarteBomben(int aktuelleZeile, int aktuelleSpalte) {
+		int anzahlBenachbarteBomben = 0;
+		
+		if (isBombe(aktuelleZeile, aktuelleSpalte - 1)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile - 1, aktuelleSpalte - 1)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile - 1, aktuelleSpalte)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile - 1, aktuelleSpalte + 1)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile, aktuelleSpalte + 1)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile + 1, aktuelleSpalte + 1)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile + 1, aktuelleSpalte)) anzahlBenachbarteBomben++;
+		if (isBombe(aktuelleZeile + 1, aktuelleSpalte - 1)) anzahlBenachbarteBomben++;
+		
+		return anzahlBenachbarteBomben;	
+	}
+
+	private void parseMineField(String mineField) {
+		String[] parsedLines = mineField.split("\r\n");
+				
+		this.parsedFields = new char[parsedLines.length][parsedLines[0].length()];
+		
+		for(int lineCtr=0;lineCtr<parsedLines.length;lineCtr++) {
+			this.parsedFields[lineCtr] = parsedLines[lineCtr].toCharArray();
+		}
+		
+		this.numbers = new char[parsedLines.length][parsedLines[0].length()];
+	}
+}

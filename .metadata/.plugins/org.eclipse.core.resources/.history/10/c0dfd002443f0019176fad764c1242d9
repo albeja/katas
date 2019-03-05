@@ -35,14 +35,10 @@ public class MinesweeperEngine {
 	private void generateNumbers() {
 		for(int line=0; line<parsedFields.length; line++) {
 			for(int column=0; column<parsedFields[line].length; column++) {
-				generateNumber(line, column);
+				if (isBomb(line, column)) numbers[line][column] = '*';
+				else numbers[line][column] = Character.forDigit(countBombsAround(line, column), 10);
 			}
 		}		
-	}
-
-	private void generateNumber(int line, int column) {
-		if (isBomb(line, column)) numbers[line][column] = '*';
-		else numbers[line][column] = Character.forDigit(countBombsAround(line, column), 10);
 	}
 
 	private boolean isBomb(int line, int column) {

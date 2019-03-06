@@ -13,28 +13,25 @@ public class NBackApplication {
 		this.n = n;
 		
 		for(int iterator = 0; iterator < serie.length(); iterator++) {
-			if (isKorrekteEingabe(scanner.next(), iterator)) korrektErraten++;
+			if (hatKorrektErraten(scanner.next(), iterator)) korrektErraten++;
 		}
 		
 		return new Double(korrektErraten * 100 / serie.length() );
 	}
 
-	private boolean isKorrekteEingabe(String input, int iterator) {
+	private boolean hatKorrektErraten(String input, int iterator) {
 		try {
-			if (isZuBeginnKeinNBackKorrekt(input, iterator)) return true;
+			// N größer bisherige Reize
+			if (this.n > iterator && !input.equalsIgnoreCase("j")) return true;
+			
+			// J Antwort & n == Reiz
 			if (isNBackKorrekt(input, iterator)) return true;
-			if (isKeinNBackKorrekt(input, iterator)) return true;
+			
+			// N Antwort & n != Reiz
+			if (!input.equalsIgnoreCase("j") && aktuelleSerie.charAt(iterator) != aktuelleSerie.charAt(iterator - this.n)) return true;
 		} catch (Exception e) {}
 		
 		return false;
-	}
-
-	private boolean isZuBeginnKeinNBackKorrekt(String input, int iterator) {
-		return this.n > iterator && !input.equalsIgnoreCase("j");
-	}
-
-	private boolean isKeinNBackKorrekt(String input, int iterator) {
-		return !input.equalsIgnoreCase("j") && aktuelleSerie.charAt(iterator) != aktuelleSerie.charAt(iterator - this.n);
 	}
 
 	private boolean isNBackKorrekt(String input, int iterator) {

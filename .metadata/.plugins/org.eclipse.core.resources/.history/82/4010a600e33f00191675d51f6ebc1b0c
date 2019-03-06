@@ -13,13 +13,13 @@ public class NBackApplication {
 		this.n = n;
 		
 		for(int iterator = 0; iterator < serie.length(); iterator++) {
-			if (isKorrekteEingabe(scanner.next(), iterator)) korrektErraten++;
+			if (hatKorrektErraten(scanner.next(), iterator)) korrektErraten++;
 		}
 		
 		return new Double(korrektErraten * 100 / serie.length() );
 	}
 
-	private boolean isKorrekteEingabe(String input, int iterator) {
+	private boolean hatKorrektErraten(String input, int iterator) {
 		try {
 			if (isZuBeginnKeinNBackKorrekt(input, iterator)) return true;
 			if (isNBackKorrekt(input, iterator)) return true;

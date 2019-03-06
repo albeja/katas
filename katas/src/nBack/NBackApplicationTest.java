@@ -26,4 +26,9 @@ public class NBackApplicationTest {
 		Scanner scanner = new Scanner("j j j j n n n j n n n j j n n n n n n n");
 		assertEquals(50, Math.round(application.starteTest(3, 500, "CBAABAAAAACAADDEFGHI", scanner)));
 	}
+	
+	@Test
+	public void generiereSerie() {
+		assertEquals(50, application.generiereSerie(50).trim().length());
+	}
 }

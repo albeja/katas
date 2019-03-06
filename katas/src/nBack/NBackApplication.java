@@ -1,5 +1,6 @@
 package nBack;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class NBackApplication {
@@ -7,12 +8,24 @@ public class NBackApplication {
 	private int n = 0;
 	private int korrektErraten = 0;
 	
+	public String generiereSerie(int reizanzahl) {
+		String randomString = "";
+		Random randomGenerator = new Random();
+		
+		for(int ctr = 0; ctr < reizanzahl; ctr++) {
+			randomString += (char)(randomGenerator.nextInt(26) + 'a');
+		}
+		
+		return randomString;
+	}
+	
 	public double starteTest(int n, int reizdauerMs, String serie, Scanner scanner) {
 		this.korrektErraten = 0;
 		this.aktuelleSerie = serie;
 		this.n = n;
 		
-		for(int iterator = 0; iterator < serie.length(); iterator++) {
+		for(int iterator = 0; iterator < aktuelleSerie.length(); iterator++) {
+			System.out.println(aktuelleSerie.charAt(iterator));
 			if (isKorrekteEingabe(scanner.next(), iterator)) korrektErraten++;
 		}
 		
@@ -39,5 +52,11 @@ public class NBackApplication {
 
 	private boolean isNBackKorrekt(String input, int iterator) {
 		return input.equalsIgnoreCase("j") && aktuelleSerie.charAt(iterator) == aktuelleSerie.charAt(iterator - this.n);
+	}
+	
+	public static void main(String[] args) {
+		NBackApplication application = new NBackApplication();
+		double ergebnis = application.starteTest(3, 500, application.generiereSerie(10), new Scanner(System.in));
+		System.out.println("Du hast " + ergebnis + " Prozent der Reize richtig beantwortet.");
 	}
 }

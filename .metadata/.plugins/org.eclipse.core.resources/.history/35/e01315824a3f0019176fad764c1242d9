@@ -1,7 +1,0 @@
-package nBack;
-
-public class NBackApplication {
-	public void starteTest(String serie) {
-		
-	}
-}

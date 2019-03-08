@@ -1,0 +1,11 @@
+package mineSweeperHack;
+
+public class MinesweeperGameReader {
+	public String readGameFile(String absolutePath) {
+		return "*...\r\n" + 
+				"....\r\n" + 
+				".*..\r\n" + 
+				"....";
+	}
+
+}

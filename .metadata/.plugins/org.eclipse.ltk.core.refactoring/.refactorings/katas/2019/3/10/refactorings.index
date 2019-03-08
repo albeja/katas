@@ -32,3 +32,5 @@
 1551857852817	Extract method 'isKeinNBackKorrekt'
 1551857956916	Extract method 'isZuBeginnKeinNBackKorrekt'
 1551857981252	Rename method 'hatKorrektErraten'
+1552031702240	Extract method 'createFile'
+1552033971277	Extract method 'readTextFromReader'

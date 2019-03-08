@@ -1,0 +1,41 @@
+package mineSweeperHack;
+
+import static org.junit.Assert.*;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class MinesweeperGameReaderTest {
+	private MinesweeperGameReader reader = new MinesweeperGameReader();
+	
+	@Before
+	public void setUp() throws Exception {
+		try {
+			Path tempPath = Paths.get(System.getProperty("user.dir"));
+		    Path tempFile = Files.createTempFile(tempPath, "unittest_", ".txt");
+		    System.out.format("The temporary file" + " has been created: %s%n", tempFile);
+		    
+		    Charset charset = Charset.forName("US-ASCII");
+		    String s = "Teststring";
+		    BufferedWriter writer = Files.newBufferedWriter(tempFile, charset);
+	        writer.write(s, 0, s.length());
+	        writer.close();
+		} catch (IOException x) {
+		    System.err.format("IOException: %s%n", x);
+		}
+		
+	}
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

@@ -1,7 +1,0 @@
-package nBack;
-
-public class NBackApplication {
-	public double startTest(String name, int n, int reizdauerMs, int anzahlReize) {
-		return 0;
-	}
-}

@@ -22,17 +22,7 @@ public class MinesweeperGameReader {
 	}
 
 	private String readTextFromReader(BufferedReader reader) throws IOException {
-		String line = null;
-		String gameAsString = null;
-				
-		while ((line = reader.readLine()) != null) {
-		    gameAsString += line ;
-		    gameAsString += "\r\n";
-		}
-		
-		reader.close();
-		
-		return gameAsString;
+		return reader.lines().reduce("", (x,y) -> x + y + "\r\n");
 	}
 	
 	private BufferedReader createReader(String absolutePath) throws IOException {

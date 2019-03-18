@@ -11,7 +11,11 @@ public class Frame {
 		return score;
 	}
 	
-	public void setPins(int pins) {
+	public int[] getPins() {
+		return pinsRolled.stream().mapToInt(i->i).toArray();
+	}
+	
+	public void addPins(int pins) {
 		pinsRolled.add(pins);
 		score += pins;
 	}

@@ -23,5 +23,33 @@ public class FrameTest {
 		assertEquals(15,currentFrame.getScore());
 		
 		assertArrayEquals(new int[] {6, 4},currentFrame.getPins());
+		assertEquals(2, currentFrame.getRolls());
+	}
+	
+	@Test
+	public void testSpare() {
+		currentFrame.addPins(6);
+		assertFalse(currentFrame.isSpare());
+		
+		currentFrame.addPins(4);
+		assertTrue(currentFrame.isSpare());
+	}
+	
+	@Test
+	public void testStrike() {
+		assertFalse(currentFrame.isStrike());
+		
+		currentFrame.addPins(10);
+		
+		assertTrue(currentFrame.isStrike());
+	}
+	
+	@Test
+	public void testNoStrikeNoSpare() {
+		currentFrame.addPins(6);
+		currentFrame.addPins(3);
+
+		assertFalse(currentFrame.isStrike());
+		assertFalse(currentFrame.isSpare());		
 	}
 }

@@ -8,7 +8,7 @@ public class BowlingGame {
 	
 	public void addRoll(int pins) throws Exception {
 		if(isOver()) throw new Exception("No roll left, game is over!");
-		if(isFirstFrame() || (getCurrentFrame().isFull() && !(isLastFrame() && isStrikeOrSpare()))) frames.add(new Frame()); 
+		if(isFirstFrame() || (getCurrentFrame().isFull() && !(isLastFrame()))) frames.add(new Frame()); 
 		if(isLastFrame() && isStrikeOrSpare()) getCurrentFrame().addBonusScore(pins);
 			
 		getCurrentFrame().addPins(pins);
@@ -59,8 +59,8 @@ public class BowlingGame {
 	}
 		
 	public boolean isOver() {
-		return isLastFrame() && getCurrentFrame().isFull()
-				&& !getCurrentFrame().isSpare() && !getCurrentFrame().isStrike();	
+		return isLastFrame() && getCurrentFrame().isFull() && !isStrikeOrSpare() ||
+				isLastFrame() && getCurrentFrame().getScore() > 10;	
 	}
 
 	private boolean isLastFrame() {

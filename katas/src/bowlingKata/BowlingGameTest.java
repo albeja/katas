@@ -53,7 +53,9 @@ public class BowlingGameTest {
 	public void testExtraRollAfterEnd() throws Exception {
 		addXRollsWithYPins(19, 4);
 		currentGame.addRoll(6);
+		assertFalse(currentGame.isOver());
 		currentGame.addRoll(5);
+		assertTrue(currentGame.isOver());
 		
 		assertEquals(20, currentGame.getFrames().get(9).getScore());
 		assertEquals(10, currentGame.getFrames().size());

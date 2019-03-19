@@ -9,18 +9,18 @@ public class BowlingGame {
 	
 	public void addRoll(int pins) throws Exception {
 		if(isOver()) throw new Exception("No roll left, game is over!");
-		
-		if(isFirstFrame() || (getCurrentFrame().isFull() && !isLastStrikeOrSpare())) frames.add(new Frame()); 
-
-		if(isLastStrikeOrSpare()) getCurrentFrame().addBonusScore(pins);
+		if(isFirstFrame() || (getCurrentFrame().isFull() && !(isLastFrame() && isStrikeOrSpare()))) frames.add(new Frame()); 
+		if(isLastFrame() && isStrikeOrSpare()) getCurrentFrame().addBonusScore(pins);
 			
 		getCurrentFrame().addPins(pins);
 		
-		try {
-			if(frameBeforeWasStrike()) getLastFrame().addBonusScore(pins);
-			if(frameBeforeWasSpare() && getCurrentFrame().getRolls() == 1) getLastFrame().addBonusScore(pins);
-		} catch (Exception e) {//No last Frame available
-		}
+		if(frameBeforeWasStrike()) getLastFrame().addBonusScore(pins);
+		if(frameBeforeWasSpare() && isFirstRollInThisFrame()) getLastFrame().addBonusScore(pins);
+		
+	}
+
+	private boolean isFirstRollInThisFrame() {
+		return getCurrentFrame().getRolls() == 1;
 	}
 
 	private Frame getLastFrame() {
@@ -30,7 +30,7 @@ public class BowlingGame {
 	private boolean frameBeforeWasSpare() {
 		try {
 			return getLastFrame().isSpare();			
-		} catch (Exception e) {
+		} catch (IndexOutOfBoundsException firstFrame) {
 			return false;
 		}
 	}
@@ -38,7 +38,7 @@ public class BowlingGame {
 	private boolean frameBeforeWasStrike() {
 		try {
 			return getLastFrame().isStrike();			
-		} catch (Exception e) {
+		} catch (IndexOutOfBoundsException firstFrame) {
 			return false;
 		}
 
@@ -61,11 +61,15 @@ public class BowlingGame {
 	}
 		
 	public boolean isOver() {
-		return frames.size() == 10 && getCurrentFrame().isFull()
+		return isLastFrame() && getCurrentFrame().isFull()
 				&& !getCurrentFrame().isSpare() && !getCurrentFrame().isStrike();	
 	}
+
+	private boolean isLastFrame() {
+		return frames.size() == 10;
+	}
 	
-	public boolean isLastStrikeOrSpare() {
-		return frames.size() == 10 && (getCurrentFrame().isSpare() || getCurrentFrame().isStrike());
+	public boolean isStrikeOrSpare() {
+		return getCurrentFrame().isSpare() || getCurrentFrame().isStrike();
 	}
 }

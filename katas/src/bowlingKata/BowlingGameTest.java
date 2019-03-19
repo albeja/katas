@@ -45,9 +45,7 @@ public class BowlingGameTest {
 	@Test (expected = Exception.class)
 	public void testNoExtraRollAfterEnd() throws Exception {
 		addXRollsWithYPins(20, 4);
-		
 		assertTrue(currentGame.isOver());
-		
 		currentGame.addRoll(4);
 	}
 	

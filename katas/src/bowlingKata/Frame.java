@@ -37,4 +37,12 @@ public class Frame {
 	public int getRolls() {
 		return pinsRolled.size();
 	}
+	
+	public boolean isFull() {
+		try {			
+			return isStrike() || getRolls()>=2;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 }

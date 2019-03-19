@@ -8,7 +8,7 @@ public class BowlingGame {
 	List<Frame> frames = new ArrayList<Frame>();
 	
 	public void addRoll(int pins) {
-		if(isFirstFrame() || isLastFrameFull()) {
+		if(isFirstFrame() || isCurrentFrameFull() ) {
 			
 		} else {
 			
@@ -19,12 +19,12 @@ public class BowlingGame {
 		return frames.isEmpty();
 	}
 
-	private boolean isLastFrameFull() {
+	private boolean isCurrentFrameFull() {
 		return frames.get(frames.size() - 1).getPins().length >= 2;
 	}
 
 	public Frame[] getFrames() {
-		return null;
+		return (Frame[])frames.toArray();
 	}
 	
 	public int getTotalScore() {

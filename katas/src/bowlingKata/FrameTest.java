@@ -52,4 +52,20 @@ public class FrameTest {
 		assertFalse(currentFrame.isStrike());
 		assertFalse(currentFrame.isSpare());		
 	}
+	
+	@Test
+	public void isFull() {
+		currentFrame.addPins(6);
+		assertFalse(currentFrame.isFull());
+		
+		currentFrame.addPins(3);
+		assertTrue(currentFrame.isFull());
+	}
+	
+	@Test
+	public void isFullStrike() {
+		assertFalse(currentFrame.isFull());
+		currentFrame.addPins(10);
+		assertTrue(currentFrame.isFull());
+	}
 }

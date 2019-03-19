@@ -58,6 +58,7 @@ public class BowlingGameTest {
 		currentGame.addRoll(5);
 		
 		assertEquals(20, currentGame.getFrames().get(9).getScore());
+		assertEquals(10, currentGame.getFrames().size());
 	}
 	
 	private void addXRollsWithYPins(int rolls, int pins) throws Exception {

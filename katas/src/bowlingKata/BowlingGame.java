@@ -8,32 +8,28 @@ public class BowlingGame {
 	LinkedList<Frame> frames = new LinkedList<Frame>();
 	
 	public void addRoll(int pins) throws Exception {
-		if(isOver()) {
-			throw new Exception("No roll left, game is over!");
-		}
+		if(isOver()) throw new Exception("No roll left, game is over!");
 		
-		if(isFirstFrame() || (getCurrentFrame().isFull() && !isLastStrikeOrSpare()) ) {
-			frames.add(new Frame());
-		} 
+		if(isFirstFrame() || (getCurrentFrame().isFull() && !isLastStrikeOrSpare())) frames.add(new Frame()); 
 
-		if(isLastStrikeOrSpare()) {
-			frames.getLast().addBonusScore(pins);
-		}
+		if(isLastStrikeOrSpare()) getCurrentFrame().addBonusScore(pins);
 			
 		getCurrentFrame().addPins(pins);
 		
-		if(frameBeforeWasStrike()) {
-			frames.get(frames.size() - 2).addBonusScore(pins);
+		try {
+			if(frameBeforeWasStrike()) getLastFrame().addBonusScore(pins);
+			if(frameBeforeWasSpare() && getCurrentFrame().getRolls() == 1) getLastFrame().addBonusScore(pins);
+		} catch (Exception e) {//No last Frame available
 		}
-		
-		if(frameBeforeWasSpare() && frames.getLast().getRolls() == 1) {
-			frames.get(frames.size() - 2).addBonusScore(pins);
-		}
+	}
+
+	private Frame getLastFrame() {
+		return frames.get(frames.size() - 2);
 	}
 	
 	private boolean frameBeforeWasSpare() {
 		try {
-			return frames.get(frames.size() - 2).isSpare();			
+			return getLastFrame().isSpare();			
 		} catch (Exception e) {
 			return false;
 		}
@@ -41,7 +37,7 @@ public class BowlingGame {
 
 	private boolean frameBeforeWasStrike() {
 		try {
-			return frames.get(frames.size() - 2).isStrike();			
+			return getLastFrame().isStrike();			
 		} catch (Exception e) {
 			return false;
 		}
@@ -65,11 +61,11 @@ public class BowlingGame {
 	}
 		
 	public boolean isOver() {
-		return frames.size() == 10 && frames.getLast().isFull()
-				&& !frames.getLast().isSpare() && !frames.getLast().isStrike();	
+		return frames.size() == 10 && getCurrentFrame().isFull()
+				&& !getCurrentFrame().isSpare() && !getCurrentFrame().isStrike();	
 	}
 	
 	public boolean isLastStrikeOrSpare() {
-		return frames.size() == 10 && (frames.getLast().isSpare() || frames.getLast().isStrike());
+		return frames.size() == 10 && (getCurrentFrame().isSpare() || getCurrentFrame().isStrike());
 	}
 }

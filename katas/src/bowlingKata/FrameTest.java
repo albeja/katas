@@ -55,6 +55,7 @@ public class FrameTest {
 	
 	@Test
 	public void isFull() {
+		assertFalse(currentFrame.isFull());
 		currentFrame.addPins(6);
 		assertFalse(currentFrame.isFull());
 		

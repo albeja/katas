@@ -39,10 +39,6 @@ public class Frame {
 	}
 	
 	public boolean isFull() {
-		try {			
-			return isStrike() || getRolls()>=2;
-		} catch (Exception e) {
-			return false;
-		}
+		return isStrike() || getRolls()>=2;
 	}
 }

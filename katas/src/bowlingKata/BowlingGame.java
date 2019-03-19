@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BowlingGame {
-
 	LinkedList<Frame> frames = new LinkedList<Frame>();
 	
 	public void addRoll(int pins) throws Exception {
@@ -16,7 +15,6 @@ public class BowlingGame {
 		
 		if(frameBeforeWasStrike()) getLastFrame().addBonusScore(pins);
 		if(frameBeforeWasSpare() && isFirstRollInThisFrame()) getLastFrame().addBonusScore(pins);
-		
 	}
 
 	private boolean isFirstRollInThisFrame() {

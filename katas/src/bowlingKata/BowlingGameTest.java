@@ -59,6 +59,40 @@ public class BowlingGameTest {
 		assertEquals(10, currentGame.getFrames().size());
 	}
 	
+	@Test
+	public void testWithSpareAndStrikes() throws Exception {
+		currentGame.addRoll(10); // 10 + 8
+		
+		currentGame.addRoll(3); 
+		currentGame.addRoll(5); // 8
+
+		currentGame.addRoll(5);
+		currentGame.addRoll(0); // 5
+		
+		currentGame.addRoll(5);
+		currentGame.addRoll(5); // 10 + 7
+		
+		currentGame.addRoll(7);
+		currentGame.addRoll(1); // 8
+		
+		currentGame.addRoll(3);
+		currentGame.addRoll(2); // 5
+
+		currentGame.addRoll(10); // 20
+		
+		currentGame.addRoll(8);
+		currentGame.addRoll(2); // 10
+		
+		currentGame.addRoll(0);
+		currentGame.addRoll(6); // 6
+		
+		currentGame.addRoll(10); //24
+		currentGame.addRoll(7);
+		
+		assertEquals(10, currentGame.getFrames().size());
+		assertEquals(121, currentGame.getTotalScore());
+	}
+	
 	private void addXRollsWithYPins(int rolls, int pins) throws Exception {
 		for(int rollCtr=0; rollCtr<rolls; rollCtr++) {
 			currentGame.addRoll(pins);			

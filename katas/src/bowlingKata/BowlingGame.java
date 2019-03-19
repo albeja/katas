@@ -1,37 +1,38 @@
 package bowlingKata;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class BowlingGame {
 
-	List<Frame> frames = new ArrayList<Frame>();
+	LinkedList<Frame> frames = new LinkedList<Frame>();
 	
 	public void addRoll(int pins) {
-		if(isFirstFrame() || isCurrentFrameFull() ) {
+		if(isFirstFrame() || getCurrentFrame().isFull() ) {
+			frames.add(new Frame());
+		} 
 			
-		} else {
-			
-		}
+		getCurrentFrame().addPins(pins);
 	}
 	
 	private boolean isFirstFrame() {
 		return frames.isEmpty();
 	}
 
-	private boolean isCurrentFrameFull() {
-		return frames.get(frames.size() - 1).getPins().length >= 2;
+	private Frame getCurrentFrame() {
+		return frames.getLast();
 	}
 
-	public Frame[] getFrames() {
-		return (Frame[])frames.toArray();
+	public List<Frame> getFrames() {
+		return frames;
 	}
 	
 	public int getTotalScore() {
-		return 0;
+		return frames.stream().mapToInt(x -> x.getScore()).reduce(0, (x,y) -> x + y);
 	}
-	
+		
 	public boolean isOver() {
-		return false;
+		return frames.size() == 10 && frames.getLast().isFull()
+				&& !frames.getLast().isSpare() && !frames.getLast().isStrike();
 	}
 }

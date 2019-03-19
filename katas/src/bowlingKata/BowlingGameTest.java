@@ -2,6 +2,8 @@ package bowlingKata;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,31 +15,17 @@ public class BowlingGameTest {
 		currentGame = new BowlingGame();
 	}
 
-	@Test(expected = Exception.class)
+	@Test
 	public void testGameWithoutSparesOrStrikes() {
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
+		for(int rollCtr=0; rollCtr<10; rollCtr++) {
+			currentGame.addRoll(1);			
+		}
 		assertFalse(currentGame.isOver());
 		assertEquals(10, currentGame.getTotalScore());
 		
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
-		currentGame.addRoll(1);
+		for(int rollCtr=0; rollCtr<10; rollCtr++) {
+			currentGame.addRoll(1);			
+		}
 		assertTrue(currentGame.isOver());
 		assertEquals(20, currentGame.getTotalScore());
 		
@@ -45,11 +33,10 @@ public class BowlingGameTest {
 		expectedFrame.addPins(1);
 		expectedFrame.addPins(1);
 		
-		for(Frame frame : currentGame.getFrames()) {
-			assertArrayEquals(new int[] {1, 1}, frame.getPins());
+		List<Frame> frames = currentGame.getFrames();
+		for(Frame frame : frames) {
+			assertArrayEquals(expectedFrame.getPins(), frame.getPins());
 		}
-		
-		currentGame.addRoll(1);
 	}
 
 }

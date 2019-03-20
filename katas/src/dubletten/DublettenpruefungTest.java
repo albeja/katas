@@ -20,10 +20,10 @@ public class DublettenpruefungTest {
 
 	@Test
 	public void testSammleKandidaten() {
-		List<IDublette> kandidaten = cut.sammle_kandidaten("C:\\Users\\jvonalbedyll\\eclipse-workspace");
+		List<IDublette> kandidaten = cut.sammle_kandidaten("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir");
 		List<String> dateipfade = new ArrayList<String>();
-		dateipfade.add("C:\\Users\\jvonalbedyll\\eclipse-workspace\\demo.txt");
-		dateipfade.add("C:\\Users\\jvonalbedyll\\eclipse-workspace\\katas\\demo.txt");
+		dateipfade.add("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir\\demo_duplicate.txt");
+		dateipfade.add("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir\\testdir\\demo_duplicate.txt");
 		
 		assertEquals(1, kandidaten.size());
 		assertEquals(dateipfade.get(0), kandidaten.get(0).getDateipfade().get(0));

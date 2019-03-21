@@ -19,7 +19,7 @@ public class DublettenpruefungTest {
 	}
 
 	@Test
-	public void testSammleKandidaten() {
+	public void testSammleKandidatenGleicheGrößeUndNamen() {
 		List<IDublette> kandidaten = cut.sammle_kandidaten("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir");
 		List<String> dateipfade = new ArrayList<String>();
 		dateipfade.add("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir\\demo_duplicate.txt");
@@ -30,4 +30,16 @@ public class DublettenpruefungTest {
 		assertEquals(dateipfade.get(1), kandidaten.get(0).getDateipfade().get(1));
 	}
 
+	@Test
+	public void testSammleKandidatenGleicherNameUnterschiedlicheGröße() {
+//		List<IDublette> kandidaten = cut.sammle_kandidaten("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir");
+//		List<String> dateipfade = new ArrayList<String>();
+//		dateipfade.add("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir\\demo_duplicate.txt");
+//		dateipfade.add("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir\\testdir\\demo_duplicate.txt");
+//		
+//		assertEquals(1, kandidaten.size());
+//		assertEquals(dateipfade.get(0), kandidaten.get(0).getDateipfade().get(0));
+//		assertEquals(dateipfade.get(1), kandidaten.get(0).getDateipfade().get(1));
+	}
+	
 }

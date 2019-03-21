@@ -11,18 +11,22 @@ public class Dublettenpruefung implements IDublettenpruefung {
 	private List<IDublette> kandidaten;
 	private List<File> fileListe;
 	private List<String> fileNameListe;
-	private List<File> gefilterteListe;
-
+	private List<File> nachNameGefilterteListe;
+	private List<File> nachNameUndGrößeGefilterteListe;
+	Dublette dublette;
+	int häufigkeitDateiname;
+	File basisPfad;
+	
 	@Override
 	public List<IDublette> sammle_kandidaten(String pfad) {
-		Dublette dublette;
 		kandidaten = new LinkedList<IDublette>();
 		fileListe = new LinkedList<File>();
 		fileNameListe = new LinkedList<String>();
-		gefilterteListe = new LinkedList<File>();
-		int häufigkeitDateiname;
+		nachNameGefilterteListe = new LinkedList<File>();
+		nachNameUndGrößeGefilterteListe = new LinkedList<File>();
+		häufigkeitDateiname = 0;
+		basisPfad = new File(pfad);
 		
-		File basisPfad = new File(pfad);
 		finde_dateien(basisPfad);
 		
 		
@@ -32,21 +36,29 @@ public class Dublettenpruefung implements IDublettenpruefung {
 			if (häufigkeitDateiname > 1) {
 				dublette = new Dublette();
 
-				gefilterteListe = fileListe.stream().filter(fileToFiler -> fileToFiler.getName().equals(file.getName())).collect(Collectors.toList());
-				System.out.println("Anzahl gefilterte Files: " + gefilterteListe.size());		
-
-				for(File gefilterterFile : gefilterteListe) {
+				nachNameGefilterteListe = filtereListeNachNamen(file.getName());
+				nachNameUndGrößeGefilterteListe = filtereListeNachGröße(file.length());
+				
+				for(File gefilterterFile : nachNameUndGrößeGefilterteListe) {
 					System.out.println(	"File: " + gefilterterFile.getName() + " | Path: " + gefilterterFile.getPath());
 					dublette.addDateipfad(gefilterterFile.getPath());
 				}
 
-				kandidaten.add(dublette);
+				if(dublette.getDateipfade().size() > 1) kandidaten.add(dublette);
 				fileNameListe.remove(file.getName());
 			}
 		}
 		
 		
 		return kandidaten;
+	}
+
+	private List<File> filtereListeNachGröße(long fileSize) {
+		return nachNameGefilterteListe.stream().filter(fileToFilter -> fileToFilter.length() == fileSize).collect(Collectors.toList());
+	}
+
+	private List<File> filtereListeNachNamen(String fileName) {
+		return fileListe.stream().filter(fileToFiler -> fileToFiler.getName().equals(fileName)).collect(Collectors.toList());
 	}
 
 	private void finde_dateien(File basisPfad) {

@@ -20,10 +20,10 @@ public class DublettenpruefungTest {
 
 	@Test
 	public void testSammleKandidatenGleicheGrößeUndNamen() {
-		List<IDublette> kandidaten = cut.sammle_kandidaten("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir");
+		List<IDublette> kandidaten = cut.sammleKandidaten("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir_duplicates");
 		List<String> dateipfade = new ArrayList<String>();
-		dateipfade.add("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir\\demo_duplicate.txt");
-		dateipfade.add("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir\\testdir\\demo_duplicate.txt");
+		dateipfade.add("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir_duplicates\\demo_duplicate.txt");
+		dateipfade.add("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir_duplicates\\testdir\\demo_duplicate.txt");
 		
 		assertEquals(1, kandidaten.size());
 		assertEquals(dateipfade.get(0), kandidaten.get(0).getDateipfade().get(0));
@@ -32,14 +32,9 @@ public class DublettenpruefungTest {
 
 	@Test
 	public void testSammleKandidatenGleicherNameUnterschiedlicheGröße() {
-//		List<IDublette> kandidaten = cut.sammle_kandidaten("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir");
-//		List<String> dateipfade = new ArrayList<String>();
-//		dateipfade.add("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir\\demo_duplicate.txt");
-//		dateipfade.add("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir\\testdir\\demo_duplicate.txt");
-//		
-//		assertEquals(1, kandidaten.size());
-//		assertEquals(dateipfade.get(0), kandidaten.get(0).getDateipfade().get(0));
-//		assertEquals(dateipfade.get(1), kandidaten.get(0).getDateipfade().get(1));
+		List<IDublette> kandidaten = cut.sammleKandidaten("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir_false_duplicates");
+		
+		assertEquals(0, kandidaten.size());
 	}
 	
 }

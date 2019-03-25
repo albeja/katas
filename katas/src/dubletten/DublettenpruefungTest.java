@@ -46,4 +46,12 @@ public class DublettenpruefungTest {
 		assertEquals(kandidaten, cut.prüfeKandidaten(kandidaten));
 	}
 	
+	@Test
+	public void prüfeKandidatenFalscheDublette() {
+		List<String> dateipfade = Stream.of("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir_false_content_duplicates\\demo_false_duplicate.txt",
+											"C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir_false_content_duplicates\\testdir\\demo_false_duplicate.txt").collect(Collectors.toList());
+		List<IDublette> kandidaten = Stream.of(new Dublette(dateipfade)).collect(Collectors.toList());
+		
+		assertTrue(cut.prüfeKandidaten(kandidaten).isEmpty());
+	}
 }

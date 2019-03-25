@@ -48,43 +48,40 @@ public class Dublettenpruefung implements IDublettenpruefung {
 	@Override
 	public List<IDublette> prüfeKandidaten(List<IDublette> kandidaten) {
 		List<IDublette> echteDubletten = new LinkedList<IDublette>();
-		List<File> files;
-		List<File> filteredFiles = new LinkedList<File>();
 		
 		for(IDublette dublette : kandidaten) {
-			files = dublette.getDateipfade().stream().map(path -> new File(path)).collect(Collectors.toList());
-			filteredFiles.clear();
-			File firstFile = files.get(0);
-			
-			System.out.println("Anzahl Files: " + files.size());
-			
-			filteredFiles = files.stream().filter(fileToFilter -> {
-				try {
-					return equalsFileContent(fileToFilter, firstFile);
-				} catch (IOException e) {
-					return false;
-				}
-			}).collect(Collectors.toList());				
-			
-			System.out.println("Anzahl gefilterte Files: " + filteredFiles.size());
-			
-			if (files.containsAll(filteredFiles) && filteredFiles.containsAll(files)) {
-				System.out.println("Es ist eine echte Dublette!");
-				echteDubletten.add(dublette);
-			}
+			if(isEchteDublette(dublette)) echteDubletten.add(dublette);
 		}
 		
 		return echteDubletten;
 	}
 	
-	private boolean equalsFileContent(File firstFile, File secondFile) throws IOException {
+	private boolean isEchteDublette(IDublette dublette) {
+		List<File> files = dublette.getDateipfade().stream().map(path -> new File(path)).collect(Collectors.toList());
+		
+		List<File >filteredFiles = getListFilteredByFirstElement(files);				
+		
+		return files.containsAll(filteredFiles) && filteredFiles.containsAll(files);
+	}
+
+	private List<File> getListFilteredByFirstElement(List<File> files) {
+		return files.stream().filter(fileToFilter -> {
+			try {
+				return haveFilesSameContent(fileToFilter, files.get(0));
+			} catch (IOException e) {
+				return false;
+			}
+		}).collect(Collectors.toList());
+	}
+	
+	
+	private boolean haveFilesSameContent(File firstFile, File secondFile) throws IOException {
 		BufferedReader readerFirstFile = new BufferedReader(new FileReader(firstFile));
 		BufferedReader readerSecondFile = new BufferedReader(new FileReader(secondFile));			
 
 	    int charValueFileOne = 0;
 	    int charValueFileTwo = 0;
 	    
-		
 		while(charValueFileTwo != -1) {
 			charValueFileOne = readerFirstFile.read();
 			charValueFileTwo = readerSecondFile.read();

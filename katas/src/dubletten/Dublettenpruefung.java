@@ -78,23 +78,19 @@ public class Dublettenpruefung implements IDublettenpruefung {
 	private boolean haveFilesSameContent(File firstFile, File secondFile) throws IOException {
 		BufferedReader readerFirstFile = new BufferedReader(new FileReader(firstFile));
 		BufferedReader readerSecondFile = new BufferedReader(new FileReader(secondFile));			
-
 	    int charValueFileOne = 0;
 	    int charValueFileTwo = 0;
+	    boolean haveSameContent = true;
 	    
 		while(charValueFileTwo != -1) {
 			charValueFileOne = readerFirstFile.read();
 			charValueFileTwo = readerSecondFile.read();
 
-			if(charValueFileOne != charValueFileTwo ) {
-				readerFirstFile.close();
-				readerSecondFile.close();
-				return false;
-			}
+			if(charValueFileOne != charValueFileTwo ) haveSameContent = false; break;
 		}
-		
+
 		readerFirstFile.close();
 		readerSecondFile.close();
-		return true;
+		return haveSameContent;
 	}
 }

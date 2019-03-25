@@ -56,6 +56,8 @@ public class Dublettenpruefung implements IDublettenpruefung {
 			filteredFiles.clear();
 			File firstFile = files.get(0);
 			
+			System.out.println("Anzahl Files: " + files.size());
+			
 			filteredFiles = files.stream().filter(fileToFilter -> {
 				try {
 					return equalsFileContent(fileToFilter, firstFile);
@@ -64,7 +66,12 @@ public class Dublettenpruefung implements IDublettenpruefung {
 				}
 			}).collect(Collectors.toList());				
 			
-			if (files == filteredFiles) echteDubletten.add(dublette);
+			System.out.println("Anzahl gefilterte Files: " + filteredFiles.size());
+			
+			if (files.containsAll(filteredFiles) && filteredFiles.containsAll(files)) {
+				System.out.println("Es ist eine echte Dublette!");
+				echteDubletten.add(dublette);
+			}
 		}
 		
 		return echteDubletten;

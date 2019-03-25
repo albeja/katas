@@ -2,21 +2,16 @@ package dubletten;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.junit.Test;
 
 public class DubletteTest {
 	Dublette dublette;
-	
-	@Before
-	public void setUp() throws Exception {
-		dublette = new Dublette();
-	}
 
 	@Test
 	public void testAddGetPfade() {
-		dublette.addDateipfad("pfad1");
-		dublette.addDateipfad("pfad2");
+		dublette = new Dublette(Stream.of("pfad1", "pfad2").collect(Collectors.toList()));
 		
 		assertEquals("pfad1", dublette.getDateipfade().get(0));
 		assertEquals("pfad2", dublette.getDateipfade().get(1));

@@ -1,6 +1,9 @@
 package dubletten;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.Instant;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,8 +13,27 @@ public class Dublettenpruefung implements IDublettenpruefung {
 	private FileFinder finder = new FileFinder();
 	private CandidateCheck checker = new CandidateCheck();
 	
-	public void schreibeDublettenInDatei(String zielpfad, String vergleichsroot) {
+	public void schreibeDublettenInDatei(String zielpfad, String vergleichsroot) throws IOException {
+		File newFile = new File(zielpfad);
+		newFile.createNewFile();
 		
+		BufferedWriter writer = new BufferedWriter(new FileWriter(newFile));
+		
+		writer.write("Startzeit: " + Instant.now());writer.newLine();
+
+		Dublettenpruefung pruefung = new Dublettenpruefung();
+		List<IDublette> kandidaten = pruefung.sammleKandidaten(vergleichsroot);
+		List<IDublette> dubletten = pruefung.prüfeKandidaten(kandidaten);
+		
+		for(int ctr=1; ctr<=dubletten.size(); ctr++) {
+			writer.write("Dublette " + ctr); writer.newLine();
+			for(String pfad : dubletten.get(ctr-1).getDateipfade()) {
+				writer.write("Pfad: " + pfad); writer.newLine();
+			}
+		}
+		
+		writer.write("Endzeit: " + Instant.now()); writer.newLine();
+		writer.close();
 	}
 	
 	@Override

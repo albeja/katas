@@ -3,6 +3,7 @@ package dubletten;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,10 +43,10 @@ public class DublettenpruefungTest {
 	}
 	
 	@Test
-	public void testSchreibeDublettenInDatei() {
-		String filename = "C:\\Users\\jvonalbedyll\\eclipse-workspace"+Instant.now();
+	public void testSchreibeDublettenInDatei() throws IOException {
+		String filename = "C:\\Users\\jvonalbedyll\\eclipse-workspace\\"+"dubletten_ergebnis_"+Instant.now().getEpochSecond()+".txt";
 		cut.schreibeDublettenInDatei(filename, "C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir_duplicates");
-		
+
 		File createdFile = new File(filename);
 		assertTrue(createdFile.isFile());
 		assertTrue(createdFile.length() > 0);

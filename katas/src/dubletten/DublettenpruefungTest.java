@@ -2,6 +2,8 @@ package dubletten;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,7 +14,7 @@ import org.junit.Test;
 import dubletten.IDublettenpruefung.IDublette;
 
 public class DublettenpruefungTest {
-	IDublettenpruefung cut;
+	Dublettenpruefung cut;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -28,6 +30,8 @@ public class DublettenpruefungTest {
 		assertEquals(1, kandidaten.size());
 		assertEquals(dateipfade.get(0), kandidaten.get(0).getDateipfade().get(0));
 		assertEquals(dateipfade.get(1), kandidaten.get(0).getDateipfade().get(1));
+		assertEquals(1, cut.prüfeKandidaten(kandidaten).size());
+
 	}
 
 	@Test
@@ -38,20 +42,13 @@ public class DublettenpruefungTest {
 	}
 	
 	@Test
-	public void prüfeKandidatenEchteDublette() {
-		List<String> dateipfade = Stream.of("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir_duplicates\\demo_duplicate.txt",
-											"C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir_duplicates\\testdir\\demo_duplicate.txt").collect(Collectors.toList());
-		List<IDublette> kandidaten = Stream.of(new Dublette(dateipfade)).collect(Collectors.toList());
+	public void testSchreibeDublettenInDatei() {
+		String filename = "C:\\Users\\jvonalbedyll\\eclipse-workspace"+Instant.now();
+		cut.schreibeDublettenInDatei(filename, "C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir_duplicates");
 		
-		assertEquals(kandidaten, cut.prüfeKandidaten(kandidaten));
+		File createdFile = new File(filename);
+		assertTrue(createdFile.isFile());
+		assertTrue(createdFile.length() > 0);
 	}
 	
-	@Test
-	public void prüfeKandidatenFalscheDublette() {
-		List<String> dateipfade = Stream.of("C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir_false_content_duplicates\\demo_false_duplicate.txt",
-											"C:\\Users\\jvonalbedyll\\eclipse-workspace\\testdir_false_content_duplicates\\testdir\\demo_false_duplicate.txt").collect(Collectors.toList());
-		List<IDublette> kandidaten = Stream.of(new Dublette(dateipfade)).collect(Collectors.toList());
-		
-		assertTrue(cut.prüfeKandidaten(kandidaten).isEmpty());
-	}
 }

@@ -1,9 +1,13 @@
 package dubletten;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -24,13 +28,16 @@ public class DublettenprüfungGUI extends javax.swing.JFrame {
     
 	public DublettenprüfungGUI() {
 		init();
+		setResizable(false);
 	}
 	
 	private void init() {
 		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(3,3, 10, 10));
 		
         // Button Verzeichnissuche
 		pathChooseButton = new JButton("Wähle Pfad");
+		pathChooseButton.setPreferredSize(new Dimension(40, 20));
 		pathChooseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser chooser = new JFileChooser();
@@ -76,9 +83,10 @@ public class DublettenprüfungGUI extends javax.swing.JFrame {
 		
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dublettenprüfung");
-        setSize(400, 400);
+        setSize(300, 200);
         
         add(panel);
+        pack();
 	}
 	
 	

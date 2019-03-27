@@ -1,8 +1,10 @@
 package dubletten;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -28,7 +30,7 @@ public class DublettenprüfungGUI extends javax.swing.JFrame {
 		add(createPanel());
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dublettenprüfung");
-        setSize(300, 200);
+        setMinimumSize(new Dimension(600,150));
 		setResizable(false);
         pack();
 	}
@@ -52,6 +54,7 @@ public class DublettenprüfungGUI extends javax.swing.JFrame {
 		constraints.gridwidth = 2;
 		constraints.gridx = 0;
 		constraints.gridy = 2;
+		constraints.fill = GridBagConstraints.NONE;
 		panel.add(createStartButton(), constraints);
 		return panel;
 	}
@@ -72,7 +75,7 @@ public class DublettenprüfungGUI extends javax.swing.JFrame {
 	}
 
 	private JButton createPathChooseButton() {
-		JButton pathChooseButton = new JButton("Wähle Pfad");
+		JButton pathChooseButton = new JButton("Wähle Root-Pfad");
 		pathChooseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { handleFileChoosing(); }
 		});
@@ -91,6 +94,8 @@ public class DublettenprüfungGUI extends javax.swing.JFrame {
 	
 	private void setPanelLayout(JPanel panel) {
 		panel.setLayout(new GridBagLayout());
+		constraints.insets = new Insets(5,5,5,5);
+		constraints.fill = GridBagConstraints.HORIZONTAL;
 	}
 	
     public static void main(String args[]) {

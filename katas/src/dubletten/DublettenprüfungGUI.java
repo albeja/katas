@@ -59,11 +59,14 @@ public class DublettenprüfungGUI extends javax.swing.JFrame {
 		
         // Startbutton
 		startButton = new JButton("Start");
-		pathChooseButton.addActionListener(new ActionListener() {
+		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					System.out.println("Prüfung gestartet. Zieldatei: " + outputFileNameField.getText() + " | " + "Rootpfad: " + startPath.getText());
 					ComparisonFileWriter.schreibeDublettenInDatei(outputFileNameField.getText(), startPath.getText());
+					System.out.println("Prüfung fertig");
 				} catch (IOException e1) {
+					System.out.println("Prüfung fehlgeschlagen");
 					e1.printStackTrace();
 				}
 			}
@@ -81,6 +84,8 @@ public class DublettenprüfungGUI extends javax.swing.JFrame {
 	
 	
     public static void main(String args[]) {
+    	// C:\Users\jvonalbedyll\eclipse-workspace\program_files.txt
+    	
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new DublettenprüfungGUI().setVisible(true);

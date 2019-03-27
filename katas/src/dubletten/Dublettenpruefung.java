@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.Instant;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,14 +12,12 @@ public class Dublettenpruefung implements IDublettenpruefung {
 	private FileFinder finder = new FileFinder();
 	private CandidateCheck checker = new CandidateCheck();
 	
-	public void schreibeDublettenInDatei(String zielpfad, String vergleichsroot) throws IOException {
+	public static void schreibeDublettenInDatei(String zielpfad, String vergleichsroot) throws IOException {
 		File newFile = new File(zielpfad);
 		newFile.createNewFile();
 		
 		BufferedWriter writer = new BufferedWriter(new FileWriter(newFile));
 		
-		writer.write("Startzeit: " + Instant.now());writer.newLine();
-
 		Dublettenpruefung pruefung = new Dublettenpruefung();
 		List<IDublette> kandidaten = pruefung.sammleKandidaten(vergleichsroot);
 		List<IDublette> dubletten = pruefung.prüfeKandidaten(kandidaten);
@@ -32,7 +29,6 @@ public class Dublettenpruefung implements IDublettenpruefung {
 			}
 		}
 		
-		writer.write("Endzeit: " + Instant.now()); writer.newLine();
 		writer.close();
 	}
 	
@@ -74,26 +70,5 @@ public class Dublettenpruefung implements IDublettenpruefung {
 	public List<IDublette> prüfeKandidaten(List<IDublette> kandidaten) {
 		return checker.prüfeKandidaten(kandidaten);
 	}
-	
-	public static void main(String[] args) {
-		//TODO: Gui bauen
-		
-		//TODO: Ergebnis in File schreiben
-		
-		
-		System.out.println("Startzeit: " + Instant.now());
 
-		Dublettenpruefung pruefung = new Dublettenpruefung();
-		List<IDublette> kandidaten = pruefung.sammleKandidaten("C:\\Program Files");
-		List<IDublette> dubletten = pruefung.prüfeKandidaten(kandidaten);
-		
-		for(int ctr=1; ctr<=dubletten.size(); ctr++) {
-			System.out.println("Dublette " + ctr);
-			for(String pfad : dubletten.get(ctr-1).getDateipfade()) {
-				System.out.println("Pfad: " + pfad);
-			}
-		}
-		
-		System.out.println("Endzeit: " + Instant.now());
-	}
 }
